@@ -1,9 +1,6 @@
 package com.bkromhout.rrvl.sample;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +8,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import butterknife.Bind;
+import androidx.annotation.NonNull;
+import androidx.core.view.MotionEventCompat;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -118,13 +118,13 @@ public class ItemAdapter extends RealmRecyclerViewAdapter<Item, RecyclerView.Vie
     }
 
     class ItemVH extends RecyclerView.ViewHolder {
-        @Bind(R.id.content)
+        @BindView(R.id.content)
         RelativeLayout content;
-        @Bind(R.id.drag_handle)
+        @BindView(R.id.drag_handle)
         ImageView dragHandle;
-        @Bind(R.id.name)
+        @BindView(R.id.name)
         TextView name;
-        @Bind(R.id.delete_button)
+        @BindView(R.id.delete_button)
         ImageButton delete;
 
         public ItemVH(View itemView) {

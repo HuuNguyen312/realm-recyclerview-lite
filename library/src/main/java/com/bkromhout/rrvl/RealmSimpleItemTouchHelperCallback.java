@@ -1,8 +1,8 @@
 package com.bkromhout.rrvl;
 
 import android.graphics.Canvas;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Implementation of {@code ItemTouchHelper.Callback} for supporting drag and drop. Adapted from <a

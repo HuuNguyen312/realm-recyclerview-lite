@@ -1,16 +1,14 @@
 apply plugin: 'com.android.library'
 apply plugin: 'realm-android'
-apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion COMPILE_SDK
-    buildToolsVersion BUILD_TOOLS
-
+    compileSdkVersion 28
+    buildToolsVersion '28.0.0'
     defaultConfig {
-        minSdkVersion 11
-        targetSdkVersion 25
-        versionCode VERSION_CODE
-        versionName VERSION_NAME
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName '1'
     }
 
     lintOptions {
@@ -26,18 +24,6 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:recyclerview-v7:25.0.1'
-    compile 'com.github.bkromhout:java-diff-utils:2.1.1'
-}
-
-publish {
-    userOrg = BINTRAY_USER
-    groupId = GROUP_NAME
-    artifactId = ARTIFACT_NAME
-    version = VERSION_NAME
-    description = DESCRIPTION
-    website = SITE_URL
-    bintrayUser = BINTRAY_USER
-    bintrayKey = BINTRAY_KEY
-    licences = ['Apache-2.0']
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.github.bkromhout:java-diff-utils:2.1.1'
 }

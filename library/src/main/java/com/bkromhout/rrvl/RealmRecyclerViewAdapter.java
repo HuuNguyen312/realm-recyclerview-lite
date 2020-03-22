@@ -3,9 +3,9 @@ package com.bkromhout.rrvl;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Bundle;
-import android.support.annotation.CallSuper;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import androidx.annotation.CallSuper;
+import androidx.recyclerview.widget.RecyclerView;
 import difflib.Delta;
 import difflib.DiffUtils;
 import difflib.Patch;
@@ -365,13 +365,6 @@ public abstract class RealmRecyclerViewAdapter<T extends RealmModel & UIDModel, 
         return false;
     }
 
-    /**
-     * Called when an item has been swiped away.
-     * @param swiped    The ViewHolder item which was swiped.
-     * @param direction The direction to which the item was swiped. Will be one of {@link
-     *                  android.support.v7.widget.helper.ItemTouchHelper#START ItemTouchHelper.START} or {@link
-     *                  android.support.v7.widget.helper.ItemTouchHelper#END ItemTouchHelper.END}.
-     */
     @Override
     public void onSwiped(RecyclerView.ViewHolder swiped, int direction) {
         // Left for the user to implement.

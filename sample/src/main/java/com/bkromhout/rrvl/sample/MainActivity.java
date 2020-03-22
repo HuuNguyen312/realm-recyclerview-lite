@@ -2,10 +2,6 @@ package com.bkromhout.rrvl.sample;
 
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,7 +9,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import butterknife.Bind;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.afollestad.materialdialogs.DialogAction;
@@ -22,13 +21,14 @@ import com.bkromhout.rrvl.FastScrollHandleStateListener;
 import com.bkromhout.rrvl.FastScrollerHandleState;
 import com.bkromhout.rrvl.RealmRecyclerView;
 import com.bkromhout.rrvl.RealmRecyclerViewAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity implements FastScrollHandleStateListener {
-    @Bind(R.id.recycler)
+    @BindView(R.id.recycler)
     RealmRecyclerView recyclerView;
-    @Bind(R.id.fab)
+    @BindView(R.id.fab)
     FloatingActionButton fab;
 
     private Realm realm;
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements FastScrollHandleS
         ButterKnife.bind(this);
 
         realm = Realm.getDefaultInstance();
-        RealmResults<Item> items = realm.where(Item.class).findAllSorted("position");
+        RealmResults<Item> items = realm.where(Item.class).sort("position").findAll();
         adapter = new ItemAdapter(this, items);
         recyclerView.setAdapter(adapter);
         recyclerView.setBubbleTextProvider((ItemAdapter) adapter);
@@ -184,14 +184,14 @@ public class MainActivity extends AppCompatActivity implements FastScrollHandleS
 
     private void showOptionsDialog() {
         View content = LayoutInflater.from(this).inflate(R.layout.options_dialog, null);
-        final CheckBox swiping = ButterKnife.findById(content, R.id.swipe);
-        final CheckBox dragAndDrop = ButterKnife.findById(content, R.id.drag_and_drop);
-        final CheckBox longClickTriggersDrag = ButterKnife.findById(content, R.id.long_click_triggers_drag);
-        final CheckBox fastScroll = ButterKnife.findById(content, R.id.fast_scroll);
-        final CheckBox autoHideHandle = ButterKnife.findById(content, R.id.auto_hide_handle);
-        final EditText autoHideDelay = ButterKnife.findById(content, R.id.auto_hide_delay);
-        final CheckBox logHandleEvents = ButterKnife.findById(content, R.id.log_handle_events);
-        final CheckBox useBubble = ButterKnife.findById(content, R.id.use_bubble);
+        final CheckBox swiping = content.findViewById(R.id.swipe);
+        final CheckBox dragAndDrop = content.findViewById(R.id.drag_and_drop);
+        final CheckBox longClickTriggersDrag = content.findViewById(R.id.long_click_triggers_drag);
+        final CheckBox fastScroll = content.findViewById(R.id.fast_scroll);
+        final CheckBox autoHideHandle = content.findViewById(R.id.auto_hide_handle);
+        final EditText autoHideDelay = content.findViewById(R.id.auto_hide_delay);
+        final CheckBox logHandleEvents = content.findViewById(R.id.log_handle_events);
+        final CheckBox useBubble = content.findViewById(R.id.use_bubble);
 
         swiping.setChecked(recyclerView.getSwipe());
         dragAndDrop.setChecked(recyclerView.getDragAndDrop());

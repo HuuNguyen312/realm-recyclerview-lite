@@ -88,13 +88,13 @@ public class ItemAdapter extends RealmRecyclerViewAdapter<Item, ItemAdapter.Item
     }
 
     class ItemVH extends RecyclerView.ViewHolder {
-        @Bind(R.id.content)
+        @BindView(R.id.content)
         RelativeLayout content;
-        @Bind(R.id.drag_handle)
+        @BindView(R.id.drag_handle)
         ImageView dragHandle;
-        @Bind(R.id.name)
+        @BindView(R.id.name)
         TextView name;
-        @Bind(R.id.delete_button)
+        @BindView(R.id.delete_button)
         ImageButton delete;
 
         public ItemVH(View itemView) {

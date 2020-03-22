@@ -31,7 +31,7 @@ public class ItemDragHelper {
             // Get the items which come before targetItem.
             RealmResults<Item> beforeTarget = realm.where(Item.class)
                                                    .lessThan("position", targetItem.position)
-                                                   .findAllSorted("position", Sort.DESCENDING);
+                                                   .sort("position", Sort.DESCENDING).findAll();
 
             // Move itemToMove to between beforeTarget.first()/null and targetItem.
             moveItemToBetween(realm, itemToMove, beforeTarget.isEmpty() ? null : beforeTarget.first(), targetItem);
@@ -56,7 +56,7 @@ public class ItemDragHelper {
             // Get the items which come after targetItem.
             RealmResults<Item> afterTarget = realm.where(Item.class)
                                                   .greaterThan("position", targetItem.position)
-                                                  .findAllSorted("position");
+                                                  .sort("position").findAll();
 
             // Move itemToMove to between targetItem and afterTarget.first()/null.
             moveItemToBetween(realm, itemToMove, targetItem, afterTarget.isEmpty() ? null : afterTarget.first());
@@ -155,7 +155,7 @@ public class ItemDragHelper {
             // Get the list's items in their current position-based order, but put them into an ArrayList instead of
             // using the RealmResults. By doing this we prevent the possibility of bugs which could be caused by items
             // being rearranged in the RealmResults as we update their positions.
-            final ArrayList<Item> orderedItems = new ArrayList<>(realm.where(Item.class).findAllSorted("position"));
+            final ArrayList<Item> orderedItems = new ArrayList<>(realm.where(Item.class).sort("position").findAll());
             realm.executeTransaction(new Realm.Transaction() {
                 @Override
                 public void execute(Realm tRealm) {
